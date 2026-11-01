@@ -48,6 +48,33 @@ const serviceRequestSchema = new mongoose.Schema(
     missingInformation: {
       type: [String],
       default: []
+    },
+
+    requiredInformation: {
+      type: [String],
+      default: []
+    },
+
+    requiredDocuments: {
+      type: [String],
+      default: []
+    },
+
+    availableInformation: {
+      type: [String],
+      default: []
+    },
+
+    availableDocuments: {
+      type: [String],
+      default: []
+    },
+
+    confidence: {
+      type: Number,
+      min: 0,
+      max: 1,
+      default: 0
     }
   },
   { timestamps: true }

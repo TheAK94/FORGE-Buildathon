@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from typing import Optional
 
 from app.services.service_analyzer import analyze_service
 
@@ -8,6 +9,7 @@ app = FastAPI(title="FORGE AI Agent")
 
 class AnalyzeRequest(BaseModel):
     message: str
+    context: Optional[dict] = None
 
 
 @app.get("/health")
@@ -22,7 +24,7 @@ def health():
 def analyze(request: AnalyzeRequest):
 
     try:
-        result = analyze_service(request.message)
+        result = analyze_service(request.message, request.context)
 
         return {
             "success": True,
